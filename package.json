@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "food ordering app",
   "scripts": {
+    "start" : "parcel index.html",
+    "build" : "parcel build index.html",
     "test": "jest"
   },
   "repository": {
@@ -13,7 +15,7 @@
     "react"
   ],
   "author": "Janaki Chodapuneedi",
-  "license": "ISC",
+  "license": "ISC ",
   "bugs": {
     "url": "https://github.com/JanakiChodapuneedi/JanusFoods/issues"
   },
