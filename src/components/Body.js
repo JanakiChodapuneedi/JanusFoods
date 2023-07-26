@@ -1,13 +1,25 @@
 import RestaurantCard from "./RestaurantCard";
 import { restList } from "./../utils/mockData";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import {SWIGGY_API} from "./../utils/constants";
+import Shimmer from "./Shimmer";
 const Body = () => {
-  const [filteredRest, setFilteredRest] = useState(restList);
+  const [filteredRest, setFilteredRest] = useState([]);
   function getTopRatedRest() {
     const filterRest = restList.filter((rest) => rest.info.avgRating > 4);
     setFilteredRest(filterRest);
   }
+  const fetchData= async() =>{
+    const data = await fetch(SWIGGY_API);
+    const json = await data.json();
+    console.log(json);
+    setFilteredRest(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants); 
+  }
+  useEffect(()=>{
+    fetchData();
+  },[]);
   return (
+    filteredRest.length!=0 ?
     <div>
       <div className="filter">
         <button
@@ -20,11 +32,12 @@ const Body = () => {
         </button>
       </div>
       <div className="resto-container">
-        {filteredRest.map((rest) => (
+        {filteredRest?.map((rest) => (
           <RestaurantCard key={rest.info.id} resData={rest} />
         ))}
       </div>
-    </div>
+    </div> :
+    <Shimmer/>
   );
 };
 
