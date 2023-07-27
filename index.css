@@ -1,68 +1,104 @@
 #heading{
     color: red;
 }
+
 .logo{
     width: 150px;
     height:100px
 }
+
 .header{
     border : 1px solid black;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
+
 .header >ul{
     display: flex;
     flex-direction: row;
     justify-content: center;
     list-style: none;
-   
 }
+
 .header >ul >li {
     padding: 10px;
     margin:20px;
 }
+
 .footer{
     display: flex;
     flex-direction: row;
 }
+
 .resto-container{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
+
 .restoCard{
     padding: 10px;
     margin: 20px;
      width: 240px;
     background-color: rgb(241, 243, 243);
 }
+
 .restoCard:hover{
     border : 1px solid black;
     cursor: pointer;
 }
+
 .restoCard-image{
     width:100%;
     height: 200px;
 }
+
+.filter{
+    margin: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+}
 .filter-btn{
-    margin: 20px;
     width:150px;
-    height:50px;
+    height:40px;
     background-color: rgb(195, 238, 223);
     padding: 2px;
     border-radius: 10px;
 }
+.search{
+    padding: 0 15px;
+}
+.search-btn{
+    width: 100px;
+    height:40px;
+    background-color: aqua;
+    border-radius: 20px;
+}
+.search-box{
+    width: 200px;
+    height:30px;
+    margin-right: 15px;
+}
+
 .shimmer-container{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
+
 .shimmer-card{
     width: 240px;
     height: 300px; 
     background-color: rgb(206, 203, 203);
     padding: 10px;
     margin: 20px;
+}
 
+.login-btn{
+    margin: 20px;
+    height: 30px;
+    width: 60px;
 }
