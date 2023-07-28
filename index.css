@@ -24,6 +24,8 @@
 .header >ul >li {
     padding: 10px;
     margin:20px;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .footer{
@@ -38,6 +40,7 @@
 }
 
 .restoCard{
+    text-decoration: none;
     padding: 10px;
     margin: 20px;
      width: 240px;
@@ -101,4 +104,31 @@
     margin: 20px;
     height: 30px;
     width: 60px;
+}
+.restaurent-menu{
+    margin-left: 25px;
+}
+.menu-card{
+    width: 900px;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    background-color: beige;
+    justify-content: space-between;
+}
+.menu-card-image{
+    padding:  20px 0;
+    width:100px;
+    height:80px;
+}
+.menu-add-btn{
+    margin-left: 20px;
+    width:50px;
+    background-color: aliceblue;
+}
+.menu-img-btn{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
 }
