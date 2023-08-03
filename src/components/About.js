@@ -7,10 +7,6 @@ constructor(props){
   console.log("parent constructor");
 }
 
-componentDidMount(){
-  console.log("parent didmount")
-}
-
 render(){
  console.log("parent render")
   return (
@@ -20,7 +16,6 @@ render(){
         This is a food ordering app which is similar to home page of swigggy
       </h2>
       <UserClass name="first child  (Class)" location="kanuru (class)" />
-      <UserClass name="second child (Class)" location="kanuru (class)" />
     </div>
   );
 }
