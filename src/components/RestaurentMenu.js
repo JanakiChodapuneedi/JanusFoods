@@ -5,32 +5,30 @@ import RestMenuCard from "./RestMenuCard";
 import { useParams } from "react-router-dom";
 const RestaurentMenu = () => {
   const [restaurantData, setRestaurantData] = useState(null);
-  const [restaurantMenu, setRestaurantMenu] = useState(null);
   const {resId}= useParams();
   
-  const getRestaurentMenu = async() => {
-    console.log(RES_MENU_API + resId +"&catalog_qa=undefined&submitAction=ENTER")
-    const data = await fetch(RES_MENU_API + resId +"&catalog_qa=undefined&submitAction=ENTER");
-    const json = await data.json();
-    //console.log(json);
-    //console.log(json?.data?.cards[0]?.card?.card?.info);
-    setRestaurantData(json?.data?.cards[0]?.card?.card?.info);
-    console.log(restaurantData);
-    setRestaurantMenu(
-      json?.data.cards[2].groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
-        .itemCards
-    );
-  }; 
-
   useEffect(() => {
     getRestaurentMenu();
   }, []);
 
+  const getRestaurentMenu = async() => {
+    //console.log(RES_MENU_API + resId +"&catalog_qa=undefined&submitAction=ENTER")
+    const data = await fetch(RES_MENU_API + resId +"&catalog_qa=undefined&submitAction=ENTER");
+    const json = await data.json();
+    //console.log(json);
+    //console.log(json?.data?.cards[0]?.card?.card?.info);
+    setRestaurantData(json?.data);
+    console.log(json?.data);
+  }; 
+
+  
+
   if (restaurantData === null) return <Shimmer />;
   console.log(restaurantData);
   const { name, costForTwoMessage, cuisines, avgRating } =
-    restaurantData;
-
+    restaurantData.cards[0]?.card?.card?.info;
+  const {itemCards}  = restaurantData?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
+  
   return (
     <div className="restaurent-menu">
       <h1> {name} </h1>
@@ -38,9 +36,11 @@ const RestaurentMenu = () => {
       <h3>{cuisines.join(",")}</h3>
       <h2>{avgRating}Stars</h2>
       <h2>Menu</h2>
-      {restaurantMenu.map((menuItem) => (
+      <ul>
+      {itemCards.map((menuItem) => (
         <RestMenuCard menuItem={menuItem} key={menuItem.card.info.id}/>
       ))}
+      </ul>
     </div>
   );
 };
