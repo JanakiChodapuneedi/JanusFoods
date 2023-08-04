@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { SWIGGY_API } from "./../utils/constants";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 const Body = () => {
   const [allRest, setAllRest] = useState([]);
   const [filteredRest, setFilteredRest] = useState([]);
@@ -12,6 +13,7 @@ const Body = () => {
     const filterRest = filteredRest.filter((rest) => rest.info.avgRating > 4);
     setFilteredRest(filterRest);
   }
+ // console.log(filteredRest);
   const fetchData = async () => {
     const data = await fetch(SWIGGY_API);
     const json = await data.json();
@@ -25,17 +27,26 @@ const Body = () => {
     setAllRest(
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+    //console.log(allRest);
   };
   function searchFilteredRest() {
     const filtRest = allRest.filter((rest) =>
       rest.info.name.toUpperCase().includes(searchTxt.toUpperCase())
     );
     setFilteredRest(filtRest);
-    //console.log("searchFilteredRest called");
+    console.log("searchFilteredRest called"+filteredRest);
   }
   useEffect(() => {
     fetchData();
+    //console.log(allRest);
   }, []);
+
+  const onlineStatus = useOnlineStatus();
+  if(onlineStatus===false){
+    return(
+      <h1>Looks like you're offline!!! Please check your internet connection</h1>
+    )
+  }
   return filteredRest.length === 0 ? (
     <Shimmer />
   ) : (

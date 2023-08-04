@@ -1,5 +1,4 @@
-import React from "react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { RES_MENU_API } from "./../utils/constants";
 

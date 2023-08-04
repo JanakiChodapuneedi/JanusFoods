@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Shimmer from "./Shimmer";
 import RestMenuCard from "./RestMenuCard";
 import { useParams } from "react-router-dom";
